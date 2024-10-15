@@ -1,14 +1,16 @@
 package com.pluralsight;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Main {
-    Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        mainMenu(scanner);
+        Scanner scanner = new Scanner(System.in);
 
     }
         //Display Menu #1 (D, P, L, X)
@@ -25,9 +27,10 @@ public class Main {
 
                 switch (command) {
                     case "D":
-                        addDeposit();
+                        addDeposit(scanner);
                         break;
                     case "P":
+                        makePayment(scanner);
                         break;
                     case "L":
                         ledgerMenu(scanner);
@@ -40,13 +43,31 @@ public class Main {
                 }
             }
         }
-        public static void addDeposit () {
-            System.out.println("NEED CSV FILE");
+        //CSV file for deposit
+        public static void addDeposit (Scanner scanner){
+            // Asking user to input fields
+            System.out.println("Enter deposit amount: ");
+            double depositAmount = scanner.nextDouble();
+            scanner.nextLine();
+            System.out.println("Enter description: ");
+            String description = scanner.nextLine();
+            System.out.println("Enter vendor: ");
+            String vendor = scanner.nextLine();
+
+            Transactions.addTransaction("Deposit", depositAmount, description, vendor);
         }
-        public static void makePayment () {
-            System.out.println("Need CSV FILE STILL");
+        public static void makePayment (Scanner scanner){
+            System.out.println("Enter payment amount: ");
+            double paymentAmount = scanner.nextDouble();
+            scanner.nextLine();
+            System.out.println("Enter description: ");
+            String description = scanner.nextLine();
+            System.out.println("Enter vendor: ");
+            String vendor = scanner.nextLine();
+
+           Transactions.addTransaction("Payment", paymentAmount, description,vendor);
         }
-//adding scanner because this will open a new menu
+        //Ledger menu
         public static void ledgerMenu (Scanner scanner){
             while (true) {
                 System.out.println("A) All");
@@ -59,19 +80,34 @@ public class Main {
                 //new swtich method for Ledger menu
                 switch (command) {
                     case "A":
+                        displayAllEntries();
                         break;
                     case "D":
+                        displayOnlyDeposits();
                         break;
                     case "P":
+                        displayPaymentsOnly();
                         break;
                     case "R":
                         reportsMenu(scanner);
+                        break;
                     case "H":
                         mainMenu(scanner);
+                        break;
 
                 }
             }
         }
+        public static void displayAllEntries () {
+
+        }
+        public static void displayOnlyDeposits () {
+
+        }
+        public static void displayPaymentsOnly () {
+
+        }
+        //Reports menu
         public static void reportsMenu (Scanner scanner){
             while (true) {
                 System.out.println("1) Month to Date");
@@ -102,10 +138,12 @@ public class Main {
                         return;
                     case "H":
                         mainMenu(scanner);
+                        break;
                 }
             }
         }
-        public static void customSearch(Scanner scanner){
+        //Custom search menu
+        public static void customSearch (Scanner scanner){
             System.out.println("\nPlease Enter The Following:\n");
             System.out.println("• Start Date: ");
             String startDate = scanner.nextLine();
@@ -117,5 +155,8 @@ public class Main {
             String vendorName = scanner.nextLine();
             System.out.println("• Amount: ");
             double searchAmount = scanner.nextDouble();
+            scanner.nextLine();
+
         }
     }
+
