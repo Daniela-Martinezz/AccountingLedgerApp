@@ -11,6 +11,7 @@ public class Transactions {
     private String description;
     private String vendor;
     private double amount;
+    public static boolean headerWritten = false;
 
     //Constructor
     public Transactions(LocalDateTime _dateTime, String _description, String _vendor, double _amount) {
@@ -56,7 +57,7 @@ public class Transactions {
     public void setAmount(double amount) {
         this.amount = amount;
     }
-
+// Format for file
     @Override
     public String toString() {
         DateTimeFormatter dateFormatted = DateTimeFormatter.ofPattern("yyyy-MM-dd|HH:mm:ss");
@@ -69,9 +70,17 @@ public class Transactions {
         Transactions transaction = new Transactions(dateTime, description, vendor, amount);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("transactions.csv", true))) {
-            writer.write("date|time|description|vendor|amount");
+
+            //Making sure header is written once
+            if (!headerWritten){
+                writer.write("date|time|description|vendor|amount");
+                writer.newLine();
+                headerWritten = true;
+            }
+
+            writer.write(transaction.toString());
             writer.newLine();
-            System.out.println(type + "for $" + amount + " complete.");
+            System.out.println(type + " for $" + amount + " complete.");
         } catch (IOException e) {
             System.out.println("An unexpected error occurred");
         }

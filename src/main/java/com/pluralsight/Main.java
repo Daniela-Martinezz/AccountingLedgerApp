@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+        mainMenu(scanner);
 
     }
         //Display Menu #1 (D, P, L, X)
