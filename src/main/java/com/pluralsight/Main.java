@@ -14,7 +14,7 @@ public class Main {
         mainMenu(scanner);
 
     }
-        //Display Menu #1 (D, P, L, X)
+        //Display Menu #1 (D, P, L, X)..
         public static void mainMenu (Scanner scanner){
             while (true) {
                 System.out.println("\nMenu\n");
