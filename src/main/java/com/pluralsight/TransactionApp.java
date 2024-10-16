@@ -2,7 +2,7 @@ package com.pluralsight;
 
 import java.util.Scanner;
 
-public class Main {
+public class TransactionApp {
 
     public static void main(String[] args) {
 
@@ -11,9 +11,10 @@ public class Main {
 
     }
         //Display Menu #1 (D, P, L, X)..
+        //While(true) keep running til exit(return, break)
         public static void mainMenu (Scanner scanner){
             while (true) {
-                System.out.println("\nMenu\n");
+                System.out.println("\nMain Menu\n");
                 System.out.println("D): Add Deposit ");
                 System.out.println("P): Make Payment (Debit)");
                 System.out.println("L): Ledger");
@@ -51,7 +52,7 @@ public class Main {
             System.out.println("Enter vendor: ");
             String vendor = scanner.nextLine();
 
-            Transactions.addTransaction("Deposit", depositAmount, description, vendor);
+            Ledger.addTransaction(depositAmount, description, vendor);
         }
         public static void makePayment (Scanner scanner){
             System.out.println("Enter payment amount: ");
@@ -62,7 +63,7 @@ public class Main {
             System.out.println("Enter vendor: ");
             String vendor = scanner.nextLine();
 
-           Transactions.addTransaction("Payment", -paymentAmount, description,vendor);
+           Ledger.addTransaction(-paymentAmount, description,vendor);
         }
         //Ledger menu
         public static void ledgerMenu (Scanner scanner){
@@ -77,13 +78,13 @@ public class Main {
                 //new swtich method for Ledger menu
                 switch (command) {
                     case "A":
-                        Transactions.displayAllEntries();
+                        Ledger.displayAllEntries();
                         break;
                     case "D":
-                        Transactions.displayOnlyDeposits();
+                        Ledger.displayOnlyDeposits();
                         break;
                     case "P":
-                        Transactions.displayPaymentsOnly();
+                        Ledger.displayPaymentsOnly();
                         break;
                     case "R":
                         reportsMenu(scanner);

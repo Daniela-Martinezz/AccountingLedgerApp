@@ -1,0 +1,112 @@
+package com.pluralsight;
+
+import java.io.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Ledger {
+    private List<FinancialTransactionsCLI> transactions;
+
+    public Ledger() {
+        transactions = new ArrayList<>();
+    }
+
+    //adding transactions
+    public static void addTransaction(double amount, String description, String vendor) {
+        LocalDateTime dateTime = LocalDateTime.now();
+        String transactionFile = "transactions.csv";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(transactionFile, true))) {
+            File file = new File(transactionFile);
+            boolean fileExists = file.exists();
+
+            if (!fileExists || file.length() == 0) {
+                writer.write("date|time|description|vendor|amount");
+                writer.newLine();
+            }
+
+            String date = dateTime.toLocalDate().toString();
+            String time = dateTime.toLocalTime().toString();
+            writer.write(date + "|" + time + "|" + description + "|" + vendor + "|" + amount);
+            writer.newLine();
+
+            //Confirmation message:
+            if (amount > 0) {
+                System.out.println("Deposit of $" + amount + " complete.");
+            } else {
+                System.out.println("Payment of $" + Math.abs(amount) + " complete.");
+            }
+        } catch (IOException e) {
+            System.out.println("An unexpected error occurred");
+        }
+    }
+
+    // Method to display ALL entries
+    public static void displayAllEntries() {
+        try (BufferedReader bufReader = new BufferedReader(new FileReader("transactions.csv"))) {
+            String line;
+            while ((line = bufReader.readLine()) != null) {
+                System.out.println(line);
+                bufReader.close();
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading file");
+        }
+    }
+
+    // if statement to show only Deposits
+    public static void displayOnlyDeposits() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("transactions.csv"))) {
+            String line;
+            boolean isFirstLine = true;
+
+            while ((line = reader.readLine()) != null) {
+                if (isFirstLine) {
+                    isFirstLine = false; //skips header
+                    continue;
+                }
+                //Splitting inputs in to their categories
+                String[] parts = line.split("\\|");
+                // there are 5 categories
+                if (parts.length == 5) {
+                    //parse amount section
+                    double amount = Double.parseDouble(parts[4]);
+                    // comparing if value is + or -, indicating deposit or payment
+                    if (amount > 0) {
+                        System.out.println(line);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading file");
+
+        }
+
+    }
+
+    // if statement to show only Payments
+    public static void displayPaymentsOnly() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("transactions.csv"))) {
+            String line;
+            boolean isFirstLine = true;
+
+            while ((line = reader.readLine()) != null) {
+                if (isFirstLine) {
+                    isFirstLine = false; //skips header line
+                    continue;
+                }
+                String[] parts = line.split("\\|");
+                if (parts.length == 5) {
+                    double amount = Double.parseDouble(parts[4]);
+                    if (amount < 0) {
+                        System.out.println(line);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading file");
+        }
+    }
+}
+
