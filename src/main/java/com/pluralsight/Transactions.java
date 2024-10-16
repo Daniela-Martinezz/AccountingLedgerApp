@@ -19,6 +19,7 @@ public class Transactions {
         this.description = _description;
         this.vendor = _vendor;
         this.amount = _amount;
+
     }
 
     //empty constructor
@@ -57,6 +58,7 @@ public class Transactions {
     public void setAmount(double amount) {
         this.amount = amount;
     }
+
 // Format for file
     @Override
     public String toString() {

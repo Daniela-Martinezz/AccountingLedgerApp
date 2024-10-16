@@ -1,9 +1,5 @@
 package com.pluralsight;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Main {
@@ -93,9 +89,9 @@ public class Main {
                         reportsMenu(scanner);
                         break;
                     case "H":
-                        mainMenu(scanner);
-                        break;
-
+                       return;
+                    default:
+                        System.out.println("Invalid Input");
                 }
             }
         }
@@ -158,6 +154,6 @@ public class Main {
             double searchAmount = scanner.nextDouble();
             scanner.nextLine();
 
-        }
     }
+}
 
