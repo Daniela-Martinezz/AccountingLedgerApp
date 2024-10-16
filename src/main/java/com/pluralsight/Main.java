@@ -62,7 +62,7 @@ public class Main {
             System.out.println("Enter vendor: ");
             String vendor = scanner.nextLine();
 
-           Transactions.addTransaction("Payment", paymentAmount, description,vendor);
+           Transactions.addTransaction("Payment", -paymentAmount, description,vendor);
         }
         //Ledger menu
         public static void ledgerMenu (Scanner scanner){
@@ -77,13 +77,13 @@ public class Main {
                 //new swtich method for Ledger menu
                 switch (command) {
                     case "A":
-                        displayAllEntries();
+                        Transactions.displayAllEntries();
                         break;
                     case "D":
-                        displayOnlyDeposits();
+                        Transactions.displayOnlyDeposits();
                         break;
                     case "P":
-                        displayPaymentsOnly();
+                        Transactions.displayPaymentsOnly();
                         break;
                     case "R":
                         reportsMenu(scanner);
@@ -95,17 +95,9 @@ public class Main {
                 }
             }
         }
-        public static void displayAllEntries () {
-
-        }
-        public static void displayOnlyDeposits () {
-
-        }
-        public static void displayPaymentsOnly () {
-
-        }
         //Reports menu
         public static void reportsMenu (Scanner scanner){
+        //while(true) infinite loop for menu
             while (true) {
                 System.out.println("1) Month to Date");
                 System.out.println("2) Previous Month");

@@ -1,7 +1,5 @@
 package com.pluralsight;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -86,6 +84,64 @@ public class Transactions {
         } catch (IOException e) {
             System.out.println("An unexpected error occurred");
         }
+    }
+    // Method to display ALL entries
+    public static void displayAllEntries(){
+        try(BufferedReader bufReader = new BufferedReader(new FileReader("transactions.csv"))){
+            String line;
+            while ((line = bufReader.readLine()) != null){
+                System.out.println(line);
+            }
+            //close reader
+            bufReader.close();
+        }
+        catch (IOException e){
+            System.out.println("Error reading file");
+        }
+    }
+    // if statement to show only Deposits
+    public static void displayOnlyDeposits(){
+        try(BufferedReader reader = new BufferedReader(new FileReader("transactions.csv"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                //Splitting inputs in to their categories
+               String[] parts = line.split("\\|");
+               // there are 5 categories
+                if(parts.length == 5){
+                    //parse amount section
+                    double amount = Double.parseDouble(parts[5]);
+                    // comparing if value is + or -, indicating deposit or payment
+                    if(amount < 0){
+                        System.out.println(line);
+                    }
+                }
+            }
+        }
+            catch(IOException e){
+                System.out.println("Error reading file");
+
+            }
+
+    }
+    // if statement to show only Payments
+    public static void displayPaymentsOnly(){
+        try(BufferedReader reader = new BufferedReader(new FileReader("transactions.csv"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+               String[] parts = line.split("\\|");
+               if(parts.length == 5){
+                   double amount = Double.parseDouble(parts[5]);
+
+                   if(amount < 0){
+                       System.out.println(line);
+                   }
+                }
+            }
+        }
+        catch(IOException e) {
+            System.out.println("Error reading file");
+        }
+
     }
 }
 
