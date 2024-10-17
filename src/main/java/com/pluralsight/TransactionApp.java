@@ -111,7 +111,6 @@ public class TransactionApp {
                 System.out.println("3) Year To Date");
                 System.out.println("4) Previous Year");
                 System.out.println("5) Search by Vendor");
-                System.out.println("6) Custom Search");
                 System.out.println("0) Back");
                 System.out.println("H) Home");
                 String command = scanner.nextLine().toUpperCase();

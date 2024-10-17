@@ -2,6 +2,7 @@ package com.pluralsight;
 
 import java.io.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +27,9 @@ public class Ledger {
                 writer.newLine();
             }
 
-            String date = dateTime.toLocalDate().toString();
-            String time = dateTime.toLocalTime().toString();
+
+            String date = dateTime.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            String time = dateTime.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
             writer.write(date + "|" + time + "|" + description + "|" + vendor + "|" + amount);
             writer.newLine();
 

@@ -61,7 +61,9 @@ public class FinancialTransactionsCLI {
     @Override
     public String toString() {
         DateTimeFormatter dateFormatted = DateTimeFormatter.ofPattern("yyyy-MM-dd|HH:mm:ss");
-        return dateTime.format(dateFormatted) + "|" + description + "|" + vendor + "|" + amount;
+        String date = dateTime.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String time = dateTime.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        return date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
     }
 }
 
