@@ -105,6 +105,7 @@ public class TransactionApp {
         public static void reportsMenu (Scanner scanner){
         //while(true) infinite loop for menu
             while (true) {
+                System.out.println("\nSelect Option Below:\n ");
                 System.out.println("1) Month to Date");
                 System.out.println("2) Previous Month");
                 System.out.println("3) Year To Date");
@@ -119,16 +120,19 @@ public class TransactionApp {
                 switch (command) {
                     case "1":
                         Reports.monthToDateReport();
+                        break;
                     case "2":
-                        return;
+                        Reports.previousMonth();
+                        break;
                     case "3":
-                        return;
+                        Reports.yearToDate();
+                        break;
                     case "4":
-                        return;
+                        Reports.previousYear();
+                        break;
                     case "5":
-                        return;
-                    case "6":
-                        return;
+                        Reports.searchByVendor();
+                        break;
                     case "0":
                         return;
                     case "H":
@@ -137,21 +141,5 @@ public class TransactionApp {
                 }
             }
         }
-        //Custom search menu
-        public static void customSearch (Scanner scanner){
-            System.out.println("\nPlease Enter The Following:\n");
-            System.out.println("• Start Date: ");
-            String startDate = scanner.nextLine();
-            System.out.println("• End Date: ");
-            String endDate = scanner.nextLine();
-            System.out.println("• Description: ");
-            String description = scanner.nextLine();
-            System.out.println("• Vendor: ");
-            String vendorName = scanner.nextLine();
-            System.out.println("• Amount: ");
-            double searchAmount = scanner.nextDouble();
-            scanner.nextLine();
-
-    }
 }
 
