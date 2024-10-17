@@ -46,6 +46,10 @@ public class TransactionApp {
             // Asking user to input fields
             System.out.println("Enter deposit amount: ");
             double depositAmount = scanner.nextDouble();
+            if (depositAmount < 0){
+                System.out.println("Invalid input. Deposit amount must be positive");
+                return;
+            }
             scanner.nextLine();
             System.out.println("Enter description: ");
             String description = scanner.nextLine();
@@ -68,6 +72,7 @@ public class TransactionApp {
         //Ledger menu
         public static void ledgerMenu (Scanner scanner){
             while (true) {
+                System.out.println("\nLedger Menu\n");
                 System.out.println("A) All");
                 System.out.println("D) Deposits");
                 System.out.println("P) Payments");
@@ -113,7 +118,7 @@ public class TransactionApp {
                 //switch for reports menu
                 switch (command) {
                     case "1":
-                        return;
+                        Reports.monthToDateReport();
                     case "2":
                         return;
                     case "3":

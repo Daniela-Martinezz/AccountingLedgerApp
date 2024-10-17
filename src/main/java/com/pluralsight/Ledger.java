@@ -19,9 +19,9 @@ public class Ledger {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(transactionFile, true))) {
             File file = new File(transactionFile);
-            boolean fileExists = file.exists();
 
-            if (!fileExists || file.length() == 0) {
+
+            if (!file.exists() || file.length() == 0) {
                 writer.write("date|time|description|vendor|amount");
                 writer.newLine();
             }
@@ -44,20 +44,21 @@ public class Ledger {
 
     // Method to display ALL entries
     public static void displayAllEntries() {
-        try (BufferedReader bufReader = new BufferedReader(new FileReader("transactions.csv"))) {
+        String transactionsFile = "transactions.csv";
+        try (BufferedReader bufReader = new BufferedReader(new FileReader(transactionsFile))) {
             String line;
             while ((line = bufReader.readLine()) != null) {
                 System.out.println(line);
-                bufReader.close();
             }
         } catch (IOException e) {
-            System.out.println("Error reading file");
+            System.out.println("Error reading file: " + e.getMessage());
         }
     }
 
     // if statement to show only Deposits
     public static void displayOnlyDeposits() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("transactions.csv"))) {
+        String transactionsFile = "transactions.csv";
+        try (BufferedReader reader = new BufferedReader(new FileReader(transactionsFile))) {
             String line;
             boolean isFirstLine = true;
 
@@ -79,7 +80,7 @@ public class Ledger {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error reading file");
+            System.out.println("Error reading file: " + e.getMessage());
 
         }
 
@@ -87,7 +88,8 @@ public class Ledger {
 
     // if statement to show only Payments
     public static void displayPaymentsOnly() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("transactions.csv"))) {
+        String transactionsFile = "transactions.csv";
+        try (BufferedReader reader = new BufferedReader(new FileReader(transactionsFile))) {
             String line;
             boolean isFirstLine = true;
 
@@ -105,7 +107,7 @@ public class Ledger {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error reading file");
+            System.out.println("Error reading file: " + e.getMessage());
         }
     }
 }
