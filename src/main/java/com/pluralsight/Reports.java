@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -42,6 +43,9 @@ public class Reports {
                 } catch (IOException e){
                         System.out.println("Error reading file: " + e.getMessage());
                 }
+                //sorting transaction list by date and time:
+                transactionList.sort(Comparator.comparing(FinancialTransactionsCLI::getDateTime));
+
                 return transactionList;
         }
       //month to date filter
@@ -49,7 +53,7 @@ public class Reports {
                 List<FinancialTransactionsCLI> transactions = readFromCsv();
                 LocalDate now = LocalDate.now();
 
-
+              //for each loop
               System.out.println("Month to Date Report: ");
               System.out.println("----------------------");
               for (FinancialTransactionsCLI transaction : transactions){
@@ -67,6 +71,7 @@ public class Reports {
 
                 System.out.println("Previous Month: ");
                 System.out.println("----------------------");
+
                 for (FinancialTransactionsCLI transaction : transactions) {
                         LocalDate transactionsDate = transaction.getDateTime().toLocalDate();
 
