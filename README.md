@@ -25,11 +25,7 @@ This simple command-line application built in Java allows users to manage their 
 - **`Reports.java`**: Generates reports from the transaction data for different periods and allows searching by vendor.
 - **`FinancialTransactionsCLI.java`**: Represents a financial transaction and handles its formatting and data management.
 
-## How to Run
-1. Clone the repository or download the files.
-2. Compile the code using `javac`:
-   ```bash
-   javac TransactionApp.java Ledger.java Reports.java FinancialTransactionsCLI.java
+
 
 ## Demo: Adding Transactions
 ![EnteringTransactions](https://github.com/user-attachments/assets/31ab66dc-da99-42b9-8373-d029855e3598)
