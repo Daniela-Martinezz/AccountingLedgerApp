@@ -49,7 +49,9 @@ public class Reports {
                 List<FinancialTransactionsCLI> transactions = readFromCsv();
                 LocalDate now = LocalDate.now();
 
-              System.out.println("\nMonth to Date Report:\n");
+
+              System.out.println("Month to Date Report: ");
+              System.out.println("----------------------");
               for (FinancialTransactionsCLI transaction : transactions){
                       if (transaction.getDateTime().toLocalDate().getMonth() == now.getMonth() &&
                       transaction.getDateTime().toLocalDate().getYear() == now.getYear()){
@@ -63,7 +65,8 @@ public class Reports {
                 LocalDate previousMonthDate = LocalDate.now().minusMonths(1);
                 int previousMonth = previousMonthDate.getMonthValue();
 
-                System.out.println("\nPrevious Month:\n");
+                System.out.println("Previous Month: ");
+                System.out.println("----------------------");
                 for (FinancialTransactionsCLI transaction : transactions) {
                         LocalDate transactionsDate = transaction.getDateTime().toLocalDate();
 
@@ -77,7 +80,8 @@ public class Reports {
                         List<FinancialTransactionsCLI> transactions = readFromCsv();
                         LocalDate now = LocalDate.now();
 
-                        System.out.println("\nYear To Date:\n");
+                        System.out.println("Year To Date: ");
+                        System.out.println("---------------");
                         for (FinancialTransactionsCLI transaction : transactions) {
                               if (transaction.getDateTime().toLocalDate().getYear() == now.getYear()) {
                                         System.out.println(transaction);
@@ -90,7 +94,8 @@ public class Reports {
                 LocalDate now = LocalDate.now();
                 int previousYear = now.getYear() -1;
 
-                System.out.println("\nPrevious Year Transactions:\n");
+                System.out.println("Previous Year Transactions: ");
+                System.out.println("-------------------------");
                 for (FinancialTransactionsCLI transaction : transactions) {
                         if (transaction.getDateTime().toLocalDate().getYear() == previousYear) {
                                 System.out.println(transaction);

@@ -9,7 +9,7 @@ public class FinancialTransactionsCLI {
     private String description;
     private String vendor;
     private double amount;
-    public static boolean headerWritten = false;
+
 
     //Constructor
     public FinancialTransactionsCLI(LocalDateTime _dateTime, String _description, String _vendor, double _amount) {
@@ -29,32 +29,17 @@ public class FinancialTransactionsCLI {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public String getVendor() {
         return vendor;
     }
 
-    public void setVendor(String vendor) {
-        this.vendor = vendor;
-    }
-
     public double getAmount() {
         return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
     }
 
 // Format for file

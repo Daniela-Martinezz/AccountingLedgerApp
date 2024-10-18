@@ -14,7 +14,9 @@ public class TransactionApp {
         //While(true) keep running til exit(return, break)
         public static void mainMenu (Scanner scanner){
             while (true) {
-                System.out.println("\nMain Menu\n");
+                System.out.println("============");
+                System.out.println(" Main Menu ");
+                System.out.println("============");
                 System.out.println("D): Add Deposit ");
                 System.out.println("P): Make Payment (Debit)");
                 System.out.println("L): Ledger");
@@ -37,7 +39,7 @@ public class TransactionApp {
                         System.out.println("Goodbye!");
                         return;
                     default:
-                        System.out.println("Invalid command");
+                        System.out.println("Invalid Command");
                 }
             }
         }
@@ -72,7 +74,9 @@ public class TransactionApp {
         //Ledger menu
         public static void ledgerMenu (Scanner scanner){
             while (true) {
-                System.out.println("\nLedger Menu\n");
+                System.out.println("============");
+                System.out.println("Ledger Menu ");
+                System.out.println("============");
                 System.out.println("A) All");
                 System.out.println("D) Deposits");
                 System.out.println("P) Payments");
@@ -83,12 +87,15 @@ public class TransactionApp {
                 //new swtich method for Ledger menu
                 switch (command) {
                     case "A":
+                        System.out.println("All Transactions: ");
                         Ledger.displayAllEntries();
                         break;
                     case "D":
+                        System.out.println("Deposits: ");
                         Ledger.displayOnlyDeposits();
                         break;
                     case "P":
+                        System.out.println("Payments: ");
                         Ledger.displayPaymentsOnly();
                         break;
                     case "R":
@@ -97,7 +104,7 @@ public class TransactionApp {
                     case "H":
                        return;
                     default:
-                        System.out.println("Invalid Input");
+                        System.out.println("Invalid Command");
                 }
             }
         }
@@ -105,15 +112,16 @@ public class TransactionApp {
         public static void reportsMenu (Scanner scanner){
         //while(true) infinite loop for menu
             while (true) {
-                System.out.println("\nSelect Option Below:\n ");
+                System.out.println("============");
+                System.out.println("Reports Menu ");
+                System.out.println("============");
                 System.out.println("1) Month to Date");
                 System.out.println("2) Previous Month");
                 System.out.println("3) Year To Date");
                 System.out.println("4) Previous Year");
                 System.out.println("5) Search by Vendor");
                 System.out.println("0) Back");
-                System.out.println("H) Home");
-                String command = scanner.nextLine().toUpperCase();
+                String command = scanner.nextLine();
 
                 //switch for reports menu
                 switch (command) {
@@ -134,11 +142,15 @@ public class TransactionApp {
                         break;
                     case "0":
                         return;
-                    case "H":
-                        mainMenu(scanner);
-                        break;
+                    default:
+                        System.out.println("Invalid Command");
                 }
             }
         }
 }
+
+/*Sources:
+workbooks 1 - 3
+https://www.freecodecamp.org/news/how-to-sort-a-list-in-java/#:~:text=List%20%2C%20and%20java.&text=You%20can%20also%20sort%20a,sort()%20method.
+ */
 

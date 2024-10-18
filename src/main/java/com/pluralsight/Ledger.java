@@ -27,7 +27,7 @@ public class Ledger {
                 writer.newLine();
             }
 
-
+            //format for date and time
             String date = dateTime.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             String time = dateTime.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
             writer.write(date + "|" + time + "|" + description + "|" + vendor + "|" + amount);
@@ -49,7 +49,14 @@ public class Ledger {
         String transactionsFile = "transactions.csv";
         try (BufferedReader bufReader = new BufferedReader(new FileReader(transactionsFile))) {
             String line;
+            boolean isFirstLine = true;
+
             while ((line = bufReader.readLine()) != null) {
+                if (isFirstLine) {
+                    isFirstLine = false; //skips header
+                    continue;
+
+                }
                 System.out.println(line);
             }
         } catch (IOException e) {
