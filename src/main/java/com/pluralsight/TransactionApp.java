@@ -21,7 +21,7 @@ public class TransactionApp {
                 System.out.println("P): Make Payment (Debit)");
                 System.out.println("L): Ledger");
                 System.out.println("X): Exit");
-                System.out.println("\n Enter your command:\n");
+                System.out.println("\nEnter your command:\n");
                 //Make command uppercase, will not be case-sensitive
                 String command = scanner.nextLine().toUpperCase();
 
@@ -82,6 +82,7 @@ public class TransactionApp {
                 System.out.println("P) Payments");
                 System.out.println("R) Reports");
                 System.out.println("H) Home");
+                System.out.println("\nEnter your command:\n");
                 String command = scanner.nextLine().toUpperCase();
 
                 //new swtich method for Ledger menu
